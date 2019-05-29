@@ -1,7 +1,13 @@
 @charset "utf-8";
 @import url("reset.css");
 
-body {
+/*---------------------------
+
+練習問題は132行目からはじまります！
+
+----------------------------*/
+
+html {
   font-family: "游ゴシック", "Yu Gothic", sans-serif;
   background-color: #eee;
   font-size: 16px;
@@ -130,8 +136,8 @@ article {
 
 /*---------------------------
 (1)
-asideタグ内のh2タグと
-asideタグ内のh3タグを
+「asideの子要素のh2」と、
+「asideの子要素のh3」を
 font-size:1.2rem
 heightとline-heightを40px
 padding 0 20pxに変更
@@ -148,7 +154,7 @@ aside h3 {
 
 /*---------------------------
 (2)
-h1タグの隣（同じ階層のひとつ後ろ）にあるpタグをmargin-bottom:0に
+「h1の兄弟要素で、h1の次に記述しているp」をmargin-bottom:0に
 
 使用セレクタ「+」
 ----------------------------*/
@@ -158,10 +164,11 @@ h1 + p {
 
 /*---------------------------
 (3)
-asideタグ及び、
-asideタグと同じ階層かつ後ろにあるすべてのタグの
+「aside」と
+「asideの兄弟要素で、asideより後に記述している、
+footer以外のすべてのタグ」の
 背景色を白に変更
-＊ただしfooterは除く
+
 
 使用セレクタ「,」「~」「*」「:not()」
 ----------------------------*/
@@ -172,9 +179,8 @@ aside ~ *:not(footer) {
 
 /*---------------------------
 (4)
-mainタグ直下の
-sectionタグの子要素のうち、
-最初のarticleタグを
+「main直下にあるsection」の子要素のうち、
+「一番最初のarticle」を
 背景色：#4ecdc4青に変更
 
 使用セレクタ「>」「 」「:first-of-type」
@@ -185,9 +191,8 @@ main > section article:first-of-type {
 
 /*---------------------------
 (5)
-mainタグ直下の
-sectionタグの子要素のうち、
-最後のarticleタグを
+「main直下にあるsection」の子要素のうち、
+「一番最後のarticle」を
 背景色：#ff6b6bに変更
 
 使用セレクタ「>」「 」「:last-of-type」
@@ -198,9 +203,10 @@ main > section article:last-of-type {
 
 /*---------------------------
 (6)
-mainタグ直下の
-section2にある奇数番目のarticleタグと
-section3にある偶数番目のarticleタグを
+「main直下にある、２つ目のsection」の子要素のうち、
+「奇数番目のarticle」と、
+「main直下にある、３つ目のsection」の子要素のうち、
+「偶数番目のarticle」を
 太字＆文字色:白　に変更
 
 使用セレクタ「,」「:nth-of-type(n)及び(odd)(even)」
@@ -213,7 +219,8 @@ main > section:nth-of-type(3) article:nth-of-type(even) {
 
 /*---------------------------
 (7)
-section1以外のarticleタグをすべてdisplay:blockにする
+「main直下にある、一番最初以外のsection」の子要素の「article」を
+display:blockに変更
 （一旦、section2-4のarticleは縦並びになる）
 
 使用セレクタ 「>」「:not」「:first-of-type」
@@ -224,10 +231,10 @@ main > section:not(:first-of-type) article {
 
 /*---------------------------
 (8)
-section2のarticleタグを
+「main直下にある、2番目のsection」の子要素の「article」を
 floatを使って横並びレイアウト
 
-＊.cf（上記）を使用すること
+＊.cf（109行目～に記載。cfはclearfixの略）を使用すること
 ----------------------------*/
 main > section:nth-of-type(2) article {
   float: left;
@@ -237,9 +244,9 @@ main > section:nth-of-type(2) article {
 
 /*---------------------------
 (9)
-section3のarticleタグを
+「main直下にある、3番目のsection」の子要素の「article」を
 絶対配置で横並びレイアウト
-（floatは使わない。section3の高さをheight:210pxに設定）
+（floatは使わない。section3の高さはheight:210pxに設定）
 ----------------------------*/
 main > section:nth-of-type(3) {
   position: relative;
@@ -249,7 +256,6 @@ main > section:nth-of-type(3) {
 main > section:nth-of-type(3) article {
   position: absolute;
   bottom: 30px;
-  /*↓↑なくても効く*/
   left: 30px;
   margin: 0;
 }
@@ -264,8 +270,8 @@ main > section:nth-of-type(3) article:nth-of-type(3) {
 
 /*---------------------------
 (10)
-section4内のdivタグをdisplay:flexにして
-articleタグを横並びレイアウト
+「main直下にある、4番目のsection」の直下の「div」に
+display:flexを指定して横並びレイアウト
 ----------------------------*/
 main > section:nth-of-type(4) div {
   display: -webkit-box;
@@ -280,11 +286,11 @@ main > section:nth-of-type(4) div {
 
 /*---------------------------
 (11)
-section5内のdivタグに
+「main直下にある、一番最後のsection」の直下の「div」
 疑似要素（::before,::after）を指定して
 3つ横並びレイアウト
 
-★articleタグにdisplay:inline-blockとvertical-align指定
+★同section内のarticleタグにdisplay:inline-blockとvertical-align指定
 
 ★疑似要素のcssは
 ・display:inline-block使用
@@ -314,7 +320,8 @@ main > section:last-of-type div::after {
 /*----------------------------
 (12)
 head内でfontawesome（free）を読込（https://fontawesome.com/start）し、
-asideタグ内のliタグに::beforeでfont-awesomeの好きなアイコンを指定
+「asideの子要素のli」に
+::beforeでfont-awesomeの好きなアイコンを指定
 ----------------------------*/
 /*head内に追加
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
